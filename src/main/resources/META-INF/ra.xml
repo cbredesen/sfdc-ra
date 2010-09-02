@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<connector xmlns="http://java.sun.com/xml/ns/" version="1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/connector_1_5.xsd">
+	<display-name>Salesforce Connection Adapter</display-name>
+	<eis-type>Salesforce</eis-type>
+	<resourceadapter-version>1.0</resourceadapter-version>
+	<license>
+		<description>LGPL</description>
+		<license-required>false</license-required>
+	</license>
+	<resourceadapter>
+		<resourceadapter-class>org.jboss.resource.deployment.DummyResourceAdapter</resourceadapter-class>
+		<outbound-resourceadapter>
+			<connection-definition>
+				<managedconnectionfactory-class>net.breddy.sfdc.resource.SalesforceManagedConnectionFactory</managedconnectionfactory-class>
+				<config-property>
+					<config-property-name>UserName</config-property-name>
+					<config-property-type>java.lang.String</config-property-type>
+					<config-property-value />
+				</config-property>
+				<config-property>
+					<config-property-name>Password</config-property-name>
+					<config-property-type>java.lang.String</config-property-type>
+					<config-property-value />
+				</config-property>
+				<connectionfactory-interface>net.breddy.sfdc.resource.SalesforceConnectionFactory</connectionfactory-interface>
+				<connectionfactory-impl-class>net.breddy.sfdc.resource.impl.SalesforceConnectionFactoryImpl</connectionfactory-impl-class>
+				<connection-interface>net.breddy.sfdc.resource.SalesforceConnection</connection-interface>
+				<connection-impl-class>net.breddy.sfdc.resource.impl.SalesforceConnectionImpl</connection-impl-class>
+			</connection-definition>
+			<transaction-support>NoTransaction</transaction-support>
+			<authentication-mechanism>
+				<authentication-mechanism-type>BasicPassword</authentication-mechanism-type>
+				<credential-interface>javax.resource.spi.security.PasswordCredential</credential-interface>
+			</authentication-mechanism>
+			<reauthentication-support>false</reauthentication-support>
+		</outbound-resourceadapter>
+	</resourceadapter>
+</connector>
