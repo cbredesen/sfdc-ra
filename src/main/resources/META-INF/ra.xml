@@ -12,7 +12,7 @@
 		<resourceadapter-class>org.jboss.resource.deployment.DummyResourceAdapter</resourceadapter-class>
 		<outbound-resourceadapter>
 			<connection-definition>
-				<managedconnectionfactory-class>net.breddy.sfdc.resource.SalesforceManagedConnectionFactory</managedconnectionfactory-class>
+				<managedconnectionfactory-class>net.breddy.sfdc.resource.impl.SalesforceManagedConnectionFactory</managedconnectionfactory-class>
 				<config-property>
 					<config-property-name>UserName</config-property-name>
 					<config-property-type>java.lang.String</config-property-type>
@@ -23,9 +23,9 @@
 					<config-property-type>java.lang.String</config-property-type>
 					<config-property-value />
 				</config-property>
-				<connectionfactory-interface>net.breddy.sfdc.resource.SalesforceConnectionFactory</connectionfactory-interface>
+				<connectionfactory-interface>net.breddy.sfdc.SalesforceConnectionFactory</connectionfactory-interface>
 				<connectionfactory-impl-class>net.breddy.sfdc.resource.impl.SalesforceConnectionFactoryImpl</connectionfactory-impl-class>
-				<connection-interface>net.breddy.sfdc.resource.SalesforceConnection</connection-interface>
+				<connection-interface>net.breddy.sfdc.SalesforceConnection</connection-interface>
 				<connection-impl-class>net.breddy.sfdc.resource.impl.SalesforceConnectionImpl</connection-impl-class>
 			</connection-definition>
 			<transaction-support>NoTransaction</transaction-support>

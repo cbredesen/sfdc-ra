@@ -1,4 +1,4 @@
-package net.breddy.sfdc.resource;
+package net.breddy.sfdc.resource.impl;
 
 import java.io.PrintWriter;
 import java.util.Set;
@@ -10,7 +10,6 @@ import javax.resource.spi.ManagedConnection;
 import javax.resource.spi.ManagedConnectionFactory;
 import javax.security.auth.Subject;
 
-import net.breddy.sfdc.resource.impl.SalesforceConnectionFactoryImpl;
 
 public class SalesforceManagedConnectionFactory implements
 		ManagedConnectionFactory {

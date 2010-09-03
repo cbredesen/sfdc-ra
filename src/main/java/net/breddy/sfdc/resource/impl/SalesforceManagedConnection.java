@@ -1,4 +1,4 @@
-package net.breddy.sfdc.resource;
+package net.breddy.sfdc.resource.impl;
 
 import java.io.PrintWriter;
 
