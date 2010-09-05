@@ -1,13 +1,17 @@
 package net.breddy.sfdc;
 
-
 /**
- * Client source for {@link SalesforceConnection} instances.
+ * Factory for {@link SalesforceConnection} instances (akin to a DataSource).
  * 
  * @author Chris Bredesen
  */
 public interface SalesforceConnectionFactory {
 
-	SalesforceConnection getConnection();
+	/**
+	 * Get an open connection to the Salesforce API.
+	 * 
+	 * @return Open connection.
+	 */
+	SalesforceConnection getConnection() throws SalesforceConnectorException;
 
 }

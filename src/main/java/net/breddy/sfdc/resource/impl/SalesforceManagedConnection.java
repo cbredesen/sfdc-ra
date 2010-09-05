@@ -12,22 +12,23 @@ import javax.security.auth.Subject;
 import javax.transaction.xa.XAResource;
 
 /**
- * http://java.sun.com/developer/technicalArticles/J2EE/connectorclient/resourceadapter.html
- * 
+ * Encapsulates a Salesforce web service client connection along with JCA resource managment 
+ * functionality.
+ *  
  * @author Chris Bredesen
+ * 
+ * @see http://java.sun.com/developer/technicalArticles/J2EE/connectorclient/resourceadapter.html
  */
 public class SalesforceManagedConnection implements ManagedConnection {
 
     // Registers a connection event 
     // listener with the instance.
 	public void addConnectionEventListener(ConnectionEventListener listener) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Adding connection event listener");
 	}
 
 	public void associateConnection(Object connection) throws ResourceException {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Associating connection");
 	}
 
     // Reinitializes handles created by 
@@ -46,14 +47,18 @@ public class SalesforceManagedConnection implements ManagedConnection {
 
 	}
 
-    // Creates an application-level handle 
-    // to myEIS in an EIS specific way.
-    // The subject parameter is related to 
-    // the security contract and will
-    // be described later.
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * <p>This implementation returns a new {@link SalesforceConnectionImpl}.</p>
+	 */
 	public Object getConnection(Subject subject, ConnectionRequestInfo cxRequestInfo) throws ResourceException {
-		// TODO Auto-generated method stub
-		return null;
+	    // Creates an application-level handle 
+	    // to myEIS in an EIS specific way.
+	    // The subject parameter is related to 
+	    // the security contract and will
+	    // be described later.
+		return new SalesforceConnectionImpl(this);
 	}
 
 	public LocalTransaction getLocalTransaction() throws ResourceException {
@@ -90,8 +95,7 @@ public class SalesforceManagedConnection implements ManagedConnection {
     // Removes a connection event 
     // listener from the instance.
 	public void removeConnectionEventListener(ConnectionEventListener listener) {
-		// TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Removing connection event listener");
 	}
 
     // Allows the default log writer, provided 

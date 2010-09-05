@@ -6,7 +6,12 @@ import org.jboss.logging.Logger;
 
 public class SalesforceConnectionImpl implements SalesforceConnection {
 	private Logger log = Logger.getLogger(SalesforceConnectionImpl.class);
-	
+	private SalesforceManagedConnection mc;
+
+	SalesforceConnectionImpl(SalesforceManagedConnection managedConnection) {
+		this.mc = managedConnection;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */

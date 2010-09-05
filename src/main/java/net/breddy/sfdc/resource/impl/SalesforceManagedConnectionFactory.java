@@ -10,9 +10,11 @@ import javax.resource.spi.ManagedConnection;
 import javax.resource.spi.ManagedConnectionFactory;
 import javax.security.auth.Subject;
 
+import org.jboss.logging.Logger;
 
-public class SalesforceManagedConnectionFactory implements
-		ManagedConnectionFactory {
+
+public class SalesforceManagedConnectionFactory implements ManagedConnectionFactory {
+	private Logger log = Logger.getLogger(SalesforceManagedConnectionFactory.class);
 
 	/**
 	 * Oracle doco says this isn't applicable.
@@ -23,13 +25,19 @@ public class SalesforceManagedConnectionFactory implements
 		throw new UnsupportedOperationException("Not applicable to n-tier environments");
 	}
 
-    // Creates a connection factory 
-    // instance based on the 
-    // ConnectionManager instance 
-    // from the application server.
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * <p>This implementation returns a new instance of {@link SalesforceConnectionFactoryImpl}.</p>
+	 */
 	public Object createConnectionFactory(ConnectionManager cxManager)
 			throws ResourceException {
-		return new SalesforceConnectionFactoryImpl(cxManager);
+		log.info("Creating new SalesforceConnectionFactory");
+	    // Creates a connection factory 
+	    // instance based on the 
+	    // ConnectionManager instance 
+	    // from the application server.
+		return new SalesforceConnectionFactoryImpl(cxManager, this);
 	}
 
     // Creates a new physical connection 
@@ -38,9 +46,9 @@ public class SalesforceManagedConnectionFactory implements
     // the security contract and will be
     // described later.
 	public ManagedConnection createManagedConnection(Subject subject,
-			ConnectionRequestInfo cxRequestInfo) throws ResourceException {
-		// TODO Auto-generated method stub
-		return null;
+			ConnectionRequestInfo cri) throws ResourceException {
+		log.debug("Creating new SalesforceManagedConnection");
+		return new SalesforceManagedConnection();
 	}
 
     // Determines if there is an existing 
@@ -66,7 +74,6 @@ public class SalesforceManagedConnectionFactory implements
     // Returns the log writer of the instance.  
     // Specific to myEIS.
 	public PrintWriter getLogWriter() throws ResourceException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -75,8 +82,7 @@ public class SalesforceManagedConnectionFactory implements
     // and tracing, with the instance.
     // Implementation is specific to myEIS.
 	public void setLogWriter(PrintWriter out) throws ResourceException {
-		// TODO Auto-generated method stub
-
+		// TODO possibly write a thin wrapper around this class's logger
 	}
 
     // Used by matchManagedConnections to check  
@@ -96,5 +102,4 @@ public class SalesforceManagedConnectionFactory implements
 		return super.hashCode();
 	}
 
-	
 }
