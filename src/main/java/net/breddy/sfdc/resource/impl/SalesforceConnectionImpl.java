@@ -1,9 +1,16 @@
 package net.breddy.sfdc.resource.impl;
 
+import javax.resource.spi.ManagedConnection;
+
 import net.breddy.sfdc.SalesforceConnection;
 
 import org.jboss.logging.Logger;
 
+/**
+ * A connection handle.  Encapsulates a {@link ManagedConnection} and a Salesforce WS client stub.
+ * 
+ * @author Chris Bredesen
+ */
 public class SalesforceConnectionImpl implements SalesforceConnection {
 	private Logger log = Logger.getLogger(SalesforceConnectionImpl.class);
 	private SalesforceManagedConnection mc;

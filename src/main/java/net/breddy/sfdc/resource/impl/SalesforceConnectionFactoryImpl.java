@@ -8,11 +8,16 @@ import net.breddy.sfdc.SalesforceConnection;
 import net.breddy.sfdc.SalesforceConnectionFactory;
 import net.breddy.sfdc.SalesforceConnectorException;
 
+/**
+ * Allocates connections using the provided {@link ConnectionManager} and {@link ManagedConnectionFactory}.
+ * 
+ * @author Chris Bredesen
+ */
 public class SalesforceConnectionFactoryImpl implements SalesforceConnectionFactory {
 	private ConnectionManager cm;
 	private ManagedConnectionFactory mcf;
 
-	public SalesforceConnectionFactoryImpl(ConnectionManager connectionManager, 
+	SalesforceConnectionFactoryImpl(ConnectionManager connectionManager, 
 			ManagedConnectionFactory managedConnectionFactory) {
 		this.cm = connectionManager;
 		this.mcf = managedConnectionFactory;
