@@ -19,7 +19,8 @@ import org.jboss.logging.Logger;
 
 /**
  * Encapsulates a Salesforce web service client connection along with JCA resource managment 
- * functionality.
+ * functionality.  This is a long-lived, pooled instance that is used by many clients and cleaned
+ * up each time.
  *  
  * @author Chris Bredesen
  * 

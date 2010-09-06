@@ -7,7 +7,8 @@ import net.breddy.sfdc.SalesforceConnection;
 import org.jboss.logging.Logger;
 
 /**
- * A connection handle.  Encapsulates a {@link ManagedConnection} and a Salesforce WS client stub.
+ * A connection handle. Encapsulates a {@link ManagedConnection} and a
+ * Salesforce WS client stub.
  * 
  * @author Chris Bredesen
  */
@@ -23,20 +24,28 @@ public class SalesforceConnectionImpl implements SalesforceConnection {
 	 * {@inheritDoc}
 	 */
 	public void close() {
-		assertValid();
+		assertUsable();
 		log.trace("Closing connection " + this);
 		mc.closeHandle(this);
 		this.mc = null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getSessionId() {
-		assertValid();
+		assertUsable();
 		return "42";
 	}
-	
-	private void assertValid() {
+
+	/**
+	 * Fail with ISE if this connection handle is in an unusable state. This
+	 * protects against bad code that attempts to use a connection after it has
+	 * been closed.
+	 */
+	private void assertUsable() {
 		if (this.mc == null) {
-			throw new IllegalStateException("Connection is invalid - no ManagedConnection available");
+			throw new IllegalStateException("No managed connection availble, connection may have already been closed.");
 		}
 	}
 

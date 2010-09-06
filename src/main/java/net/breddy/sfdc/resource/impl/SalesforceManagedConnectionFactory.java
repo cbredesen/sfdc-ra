@@ -12,7 +12,14 @@ import javax.security.auth.Subject;
 
 import org.jboss.logging.Logger;
 
-
+/**
+ * Factory for @link {@link SalesforceManagedConnection} instances. Also serves
+ * as the main lifecycle object for this resource adapter -- a single instance
+ * can service clients for the lifetime of an application server. Configuration
+ * properties set here are used for all managed connections created by it.
+ * 
+ * @author Chris Bredesen
+ */
 public class SalesforceManagedConnectionFactory implements ManagedConnectionFactory {
 	private Logger log = Logger.getLogger(SalesforceManagedConnectionFactory.class);
 
@@ -28,8 +35,7 @@ public class SalesforceManagedConnectionFactory implements ManagedConnectionFact
 	/**
 	 * {@inheritDoc}
 	 */
-	public Object createConnectionFactory(ConnectionManager cxManager)
-			throws ResourceException {
+	public Object createConnectionFactory(ConnectionManager cxManager) throws ResourceException {
 		log.info("Creating new SalesforceConnectionFactory");
 		return new SalesforceConnectionFactoryImpl(cxManager, this);
 	}
@@ -61,7 +67,7 @@ public class SalesforceManagedConnectionFactory implements ManagedConnectionFact
 	public ManagedConnection matchManagedConnections(Set connectionSet,
 			Subject subject, ConnectionRequestInfo cxRequestInfo)
 			throws ResourceException {
-		// TODO Auto-generated method stub
+		log.trace("Matching managed connection for subject " + subject);
 		return null;
 	}
 
