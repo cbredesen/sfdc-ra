@@ -27,16 +27,10 @@ public class SalesforceManagedConnectionFactory implements ManagedConnectionFact
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * <p>This implementation returns a new instance of {@link SalesforceConnectionFactoryImpl}.</p>
 	 */
 	public Object createConnectionFactory(ConnectionManager cxManager)
 			throws ResourceException {
 		log.info("Creating new SalesforceConnectionFactory");
-	    // Creates a connection factory 
-	    // instance based on the 
-	    // ConnectionManager instance 
-	    // from the application server.
 		return new SalesforceConnectionFactoryImpl(cxManager, this);
 	}
 

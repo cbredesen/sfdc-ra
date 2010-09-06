@@ -16,11 +16,21 @@ public class SalesforceConnectionImpl implements SalesforceConnection {
 	 * {@inheritDoc}
 	 */
 	public void close() {
-		log.info("Closing connection " + this);
+		assertValid();
+		log.trace("Closing connection " + this);
+		mc.closeHandle(this);
+		this.mc = null;
 	}
 
 	public String getSessionId() {
+		assertValid();
 		return "42";
+	}
+	
+	private void assertValid() {
+		if (this.mc == null) {
+			throw new IllegalStateException("Connection is invalid - no ManagedConnection available");
+		}
 	}
 
 }
