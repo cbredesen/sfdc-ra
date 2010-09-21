@@ -9,7 +9,7 @@
 		<license-required>false</license-required>
 	</license>
 	<resourceadapter>
-		<resourceadapter-class>org.jboss.resource.deployment.DummyResourceAdapter</resourceadapter-class>
+		<resourceadapter-class>net.breddy.sfdc.resource.impl.SalesforceResourceAdapter</resourceadapter-class>
 		<outbound-resourceadapter>
 			<connection-definition>
 				<managedconnectionfactory-class>net.breddy.sfdc.resource.impl.SalesforceManagedConnectionFactory</managedconnectionfactory-class>

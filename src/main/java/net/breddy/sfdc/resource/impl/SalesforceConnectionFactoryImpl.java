@@ -1,5 +1,10 @@
 package net.breddy.sfdc.resource.impl;
 
+import java.io.Serializable;
+
+import javax.naming.NamingException;
+import javax.naming.Reference;
+import javax.resource.Referenceable;
 import javax.resource.ResourceException;
 import javax.resource.spi.ConnectionManager;
 import javax.resource.spi.ManagedConnectionFactory;
@@ -13,9 +18,10 @@ import net.breddy.sfdc.SalesforceConnectorException;
  * 
  * @author Chris Bredesen
  */
-public class SalesforceConnectionFactoryImpl implements SalesforceConnectionFactory {
+public class SalesforceConnectionFactoryImpl implements SalesforceConnectionFactory, Serializable, Referenceable {
 	private ConnectionManager cm;
 	private ManagedConnectionFactory mcf;
+	private Reference reference;
 
 	SalesforceConnectionFactoryImpl(ConnectionManager connectionManager, 
 			ManagedConnectionFactory managedConnectionFactory) {
@@ -29,6 +35,16 @@ public class SalesforceConnectionFactoryImpl implements SalesforceConnectionFact
 		} catch (ResourceException e) {
 			throw new SalesforceConnectorException("Could not allocate connection", e);
 		}
+	}
+
+	@Override
+	public void setReference(Reference reference) {
+		this.reference = reference;
+	}
+
+	@Override
+	public Reference getReference() throws NamingException {
+		return reference;
 	}
 
 }

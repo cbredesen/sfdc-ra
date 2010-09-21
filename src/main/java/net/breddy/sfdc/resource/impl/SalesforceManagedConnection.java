@@ -53,6 +53,7 @@ public class SalesforceManagedConnection implements ManagedConnection {
 	void closeHandle(SalesforceConnection handle) {
 		log.trace("Closing connection handle " + handle);
 		ConnectionEvent event = new ConnectionEvent(this, ConnectionEvent.CONNECTION_CLOSED);
+		event.setConnectionHandle(handle);
 		for (ConnectionEventListener listener : this.listeners) {
 			log.trace("Firing connection closed event on listener " + listener);
 			listener.connectionClosed(event);
