@@ -1,0 +1,15 @@
+Project Purpose
+
+A prototype JCA adapter for Salesforce connections.
+
+Goals
+
+* Provide robust Java EE connectivity to Salesforce.com SOAP services
+* Simple configuration (as simple as JCA will allow...)
+* Use of standard Salesforce.com WSDL
+* Use of enterprise custom WSDLs
+
+Status
+
+The adapter is working and deployable but provides no actual connections.
+Currenly working out how to elegantly broker multiple types of SOAP endpoint.
