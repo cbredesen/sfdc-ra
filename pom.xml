@@ -19,6 +19,24 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>wsimport</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<packageName>net.breddy.sfdc.soap</packageName>
+					<wsdlDirectory>src/main/resources</wsdlDirectory>
+					<xjcArgs>
+						<xjcArg>-XautoNameResolution</xjcArg>
+					</xjcArgs>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
