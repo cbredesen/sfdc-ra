@@ -8,6 +8,7 @@ Goals
 * Simple configuration (as simple as JCA will allow...)
 * Use of standard Salesforce.com WSDL
 * Use of enterprise custom WSDLs
+* Free Software (GPL v3)
 
 Status
 
